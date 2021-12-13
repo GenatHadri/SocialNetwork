@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const morgan = require("morgan");
+import { readdirSync } from "fs";
 
 require("dotenv").config();
 
@@ -22,9 +23,8 @@ app.use(
   })
 );
 
-app.post("/api/register", (req, res) => {
-  console.log("REGISTER ENDPOINT => ", req.body);
-});
+//autoload routes
+readdirSync("./routes").map((r) => app.use("/api", require(`./routes/${r}`)));
 
 const port = process.env.PORT || 8000;
 
