@@ -1,23 +1,37 @@
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [secret, setSecret] = useState("");
+  const [ok, setOk] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    axios
-      .post("http://localhost:8000/api/register", {
+    // axios
+    //   .post("http://localhost:8000/api/register", {
+    //     name,
+    //     email,
+    //     password,
+    //     secret,
+    //   })
+    //   .then((res) => setOk(res.data.ok))
+    //   .catch((err) => toast.error(err.response.data));
+
+    try {
+      const { data } = await axios.post("http://localhost:8000/api/register", {
         name,
         email,
         password,
         secret,
-      })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      });
+      setOk(data.ok);
+    } catch (err) {
+      toast.error(err.response.data);
+    }
   };
 
   return (

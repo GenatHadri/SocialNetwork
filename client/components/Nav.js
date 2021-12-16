@@ -12,7 +12,7 @@ const Nav = () => {
       </Link>
 
       <Link href="/register ">
-        <a className="nav-link text-light">Register</a>
+        <a className="nav-link text-light"  >Register</a>
       </Link>
     </nav>
   );
