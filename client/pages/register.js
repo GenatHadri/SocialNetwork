@@ -40,6 +40,7 @@ const Register = () => {
       setEmail("");
       setPassword("");
       setSecret("");
+      console.log(data);
       setOk(data.ok);
       setLoading(false);
     } catch (err) {
@@ -70,6 +71,13 @@ const Register = () => {
             setSecret={setSecret}
             loading={loading}
           />
+
+          <p className="text-center">
+            Already registered?{" "}
+            <Link href="/login">
+              <a>Login</a>
+            </Link>
+          </p>
         </div>
       </div>
 
